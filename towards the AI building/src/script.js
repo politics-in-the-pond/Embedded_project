@@ -1,4 +1,4 @@
-const WIDTH=864, HEIGHT=576;
+const WIDTH=1000, HEIGHT=750;
 const TILESIZE = 48;
 const ROWS = HEIGHT / TILESIZE;
 const COLS = WIDTH / TILESIZE;
@@ -24,13 +24,17 @@ var config = {
 
 var game = new Phaser.Game(config);
 //처음 레벨 설정 
-var level = 2;
+var level = 1;
 var gameover = false;
 
 function preload() {
 	//this.load.image('bg', 'assets/BG1.png');
 	// assets 들 변수 지어주기 
-	this.load.image('bg', 'assets/BG2.png');
+	this.load.image('stage1', 'assets/stage_subwaygate.png');
+	this.load.image('stage2', 'assets/stage_gachonbuilding.png');//비전타워
+	this.load.image('stage3', 'assets/stage_gachonbuilding.png');
+	this.load.image('stage4', 'assets/stage_windwheel.png');
+
 	this.load.image('sun', 'assets/sun.png');
 	this.load.image('fire1', 'tiles/15.png');
 	this.load.image('fire2', 'tiles/16.png');
@@ -65,8 +69,15 @@ function preload() {
 
 function create() {
 	// draw background
-	this.add.image(0, 0, 'bg').setOrigin(0).setScrollFactor(0);
-
+	if(level == 1)
+		this.add.image(0, 0, 'stage1').setOrigin(0).setScrollFactor(0);
+	else if(level ==2)
+	this.add.image(0, 0, 'stage2').setOrigin(0).setScrollFactor(0);
+	else if(level ==3)
+	this.add.image(0, 0, 'stage3').setOrigin(0).setScrollFactor(0);
+	else if(level ==4)
+	this.add.image(0, 0, 'stage4').setOrigin(0).setScrollFactor(0);
+	
 	//this.add.image(100, 120, 'sun');
 
 	// draw grid
@@ -116,7 +127,7 @@ function create() {
 	this.physics.add.overlap(player, exits, gameWon, null, this);
 
 	// Text Objects
-	levelText = this.add.text(WIDTH-200, 20, `Level : ${level}`, {fontSize:'32px', fill:'#000'})
+	levelText = this.add.text(WIDTH-200, 20, `Stage : ${level}`, {fontSize:'32px', fill:'#000'})
 
 	// draw border
 	var rect = this.add.rectangle(0, 0, WIDTH, HEIGHT).setOrigin(0);
@@ -150,6 +161,16 @@ function update() {
 // 이 부분 코드 이해하면 맵 위치 설정 가능 
 //여기서 tiles 의 위치 설정 
 function loadLevelSetup(levels, level, scene) {
+	if(level ==1){}
+	/*if(level==2)
+	this.add.image(0, 0, 'stage2').setOrigin(0).setScrollFactor(0);
+	else if(level==3)
+	this.add.image(0, 0, 'stage3').setOrigin(0).setScrollFactor(0);
+	else if(level==4)
+	this.add.image(0, 0, 'stage3').setOrigin(0).setScrollFactor(0);
+	else if(level==5)
+	this.add.image(0, 0, 'stage4').setOrigin(0).setScrollFactor(0);
+*/
 	level_data = levels[level];
 	for (let i=0; i<level_data.length; i++) {
 		for (let j=0; j<level_data[0].length; j++) {
