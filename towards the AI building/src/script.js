@@ -50,8 +50,8 @@ function preload() {
 	this.load.spritesheet('dude' ,'assets/player.png', {
 		frameWidth: 32, frameHeight: 48
 	})
-	this.load.spritesheet('dude2','assets/pin.png',{
-		frameWidth: 28, frameHeight: 28
+	this.load.spritesheet('dude2','assets/sizeup_pin.png',{
+		frameWidth: 48, frameHeight: 48
 	})
 	// tile들 불러오기 
 	for (let i=0; i<13; i++) {

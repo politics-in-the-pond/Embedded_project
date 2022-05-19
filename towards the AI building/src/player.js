@@ -20,7 +20,7 @@ class Player extends Phaser.GameObjects.Sprite {
 	        key: 'turn',
 			//오른쪽 방향의 asset 사진 배열 5~8 
 	        frames: config.scene.anims.generateFrameNumbers('dude2', {start: 0, end: 8}),
-	        frameRate: 10,
+	        frameRate: 7,
 	        repeat: -1
 	    })
 
