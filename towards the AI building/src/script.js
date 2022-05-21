@@ -2,7 +2,7 @@ const WIDTH=1000, HEIGHT=750;
 const TILESIZE = 48;
 const ROWS = HEIGHT / TILESIZE;
 const COLS = WIDTH / TILESIZE;
-const MAX_LEVEL = 6;
+const MAX_LEVEL = 5;
 
 var config = {
 	type: Phaser.AUTO,
@@ -24,16 +24,22 @@ var config = {
 
 var game = new Phaser.Game(config);
 //처음 레벨 설정 
-var level = 2;
+var level = 5;
 var gameover = false;
 
 function preload() {
-	//this.load.image('bg', 'assets/BG1.png');
+
 	// assets 들 변수 지어주기 
+	// intro
+	this.load.image('intro1', 'assets/intro1.png');
+	this.load.image('intro2', 'assets/intro2.png');
+	// stage
 	this.load.image('stage1', 'assets/stage_subwaygate.png');
-	this.load.image('stage2', 'assets/stage_gachonbuilding.png');//비전타워
+	this.load.image('stage2', 'assets/stage_visiontower.png');
 	this.load.image('stage3', 'assets/stage_gachonbuilding.png');
 	this.load.image('stage4', 'assets/stage_windwheel.png');
+	// outro
+	this.load.image('outro1', 'assets/outro1.png');
 
 	this.load.image('sun', 'assets/sun.png');
 	this.load.image('fire1', 'tiles/15.png');
@@ -68,16 +74,42 @@ function preload() {
 }
 
 function create() {
+	// intro
+	if(level == -1){ //intro1
+		this.add.image(0, 0, 'intro1').setOrigin(0).setScrollFactor(0);
+		this.add.text(WIDTH-800, 40, `I'm a freshman at Gachon University.`, {fontSize:'30px', fill:'#000'})
+		this.add.text(WIDTH-870, 80, `Today is the first day to go to AI Building!`, {fontSize:'30px', fill:'#000'})
+		setTimeout(() => {
+			level+=1;
+			this.scene.restart();
+		}, 4000);
+	}
+	else if(level == 0){
+		this.add.image(0, 0, 'intro2').setOrigin(0).setScrollFactor(0);
+		this.add.text(WIDTH-600, 40, `Ah, but...monster!!`, {fontSize:'30px', fill:'#000'})
+		this.add.text(WIDTH-700, 80, `Can I go to AI building safely?`, {fontSize:'30px', fill:'#000'})
+		setTimeout(() => {
+			level+=1;
+			this.scene.restart();
+		}, 4000);
+	}
+
 	// draw background
-	if(level == 1)
+	else if(level == 1)
 		this.add.image(0, 0, 'stage1').setOrigin(0).setScrollFactor(0);
-	else if(level ==2)
-	this.add.image(0, 0, 'stage2').setOrigin(0).setScrollFactor(0);
-	else if(level ==3)
-	this.add.image(0, 0, 'stage3').setOrigin(0).setScrollFactor(0);
-	else if(level ==4)
-	this.add.image(0, 0, 'stage4').setOrigin(0).setScrollFactor(0);
+	else if(level == 2)
+		this.add.image(0, 0, 'stage2').setOrigin(0).setScrollFactor(0);
+	else if(level == 3)
+		this.add.image(0, 0, 'stage3').setOrigin(0).setScrollFactor(0);
+	else if(level == 4)
+		this.add.image(0, 0, 'stage4').setOrigin(0).setScrollFactor(0);
 	
+	//outro
+	else if(level == 5){
+		this.add.image(0, 0, 'outro1').setOrigin(0).setScrollFactor(0);
+		this.add.text(WIDTH-620, 140, `I arrived safely!`, {fontSize:'30px', fill:'#000'})
+		this.add.text(WIDTH-620, 180, `I'm going to go to class now!`, {fontSize:'30px', fill:'#000'})
+	}
 	//this.add.image(100, 120, 'sun');
 
 	// draw grid
@@ -105,7 +137,10 @@ function create() {
 	loadLevelSetup(levels, level, this);
 
 	// creating player
-	player = new Player({scene:this, x: 100, y:300});
+	if(level < 1)
+		player = new Player({scene:this, x: 0, y:800});
+	else
+		player = new Player({scene:this, x: 100, y:300});
 
 	// Collision Detection
 	this.physics.add.collider(player, platforms);
@@ -128,6 +163,7 @@ function create() {
 	this.physics.add.overlap(player, exits, gameWon, null, this);
 
 	// Text Objects
+	if(level>=1 && level<5)
 	levelText = this.add.text(WIDTH-200, 20, `Stage : ${level}`, {fontSize:'32px', fill:'#000'})
 
 	// draw border
@@ -154,24 +190,13 @@ function update() {
 		if (cursor.up.isDown && player.body.touching.down) {
 			player.body.setVelocityY(-400);
 		}
-
-		
 	}
 }
 // 레벨마다 맵 다르게 설정하는것 
 // 이 부분 코드 이해하면 맵 위치 설정 가능 
 //여기서 tiles 의 위치 설정 
 function loadLevelSetup(levels, level, scene) {
-	if(level ==1){}
-	/*if(level==2)
-	this.add.image(0, 0, 'stage2').setOrigin(0).setScrollFactor(0);
-	else if(level==3)
-	this.add.image(0, 0, 'stage3').setOrigin(0).setScrollFactor(0);
-	else if(level==4)
-	this.add.image(0, 0, 'stage3').setOrigin(0).setScrollFactor(0);
-	else if(level==5)
-	this.add.image(0, 0, 'stage4').setOrigin(0).setScrollFactor(0);
-*/
+
 	level_data = levels[level];
 	for (let i=0; i<level_data.length; i++) {
 		for (let j=0; j<level_data[0].length; j++) {
@@ -254,9 +279,6 @@ function gameOver(player, tile) {
 function gameWon(player, tile) {
 	if (level < MAX_LEVEL) {
 		level += 1;
-		if(level == MAX_LEVEL) { //게임 클리어 했을때
-			alert("clear!!!");}
-
 		this.scene.restart();
 	}
 }
