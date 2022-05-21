@@ -24,7 +24,7 @@ var config = {
 
 var game = new Phaser.Game(config);
 //처음 레벨 설정 
-var level = 1;
+var level = 0;
 var gameover = false;
 
 function preload() {
@@ -53,11 +53,9 @@ function preload() {
 	this.load.image('movingp', 'assets/moving.png');
 	this.load.image('flower', 'tiles/27.png');
 	this.load.image('slime', 'tiles/29.png');
-	this.load.spritesheet('dude' ,'assets/player.png', {
-		frameWidth: 32, frameHeight: 48
-	})
-	this.load.spritesheet('dude2','assets/sizeup_student.png',{
-		frameWidth: 48, frameHeight: 48
+
+	this.load.spritesheet('student','assets/sizeup_student.png',{
+		frameWidth: 72, frameHeight: 72
 	})
 	// tile들 불러오기 
 	for (let i=0; i<13; i++) {

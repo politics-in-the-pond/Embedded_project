@@ -1,6 +1,6 @@
 class Player extends Phaser.GameObjects.Sprite {
 	constructor(config) {
-		super(config.scene, config.x, config.y, 'dude2');
+		super(config.scene, config.x, config.y, 'student');
 		config.scene.add.existing(this);
 		config.scene.physics.add.existing(this);
 
@@ -11,7 +11,7 @@ class Player extends Phaser.GameObjects.Sprite {
 		config.scene.anims.create({
 	        key: 'left',
 			//왼쪽 방향의 asset 사진 배열 0~3 
-	        frames: config.scene.anims.generateFrameNumbers('dude2', {start: 9, end: 14}),
+	        frames: config.scene.anims.generateFrameNumbers('student', {start: 9, end: 14}),
 	        frameRate: 10,
 	        repeat: -1
 	    })
@@ -19,7 +19,7 @@ class Player extends Phaser.GameObjects.Sprite {
 		config.scene.anims.create({
 	        key: 'turn',
 			//오른쪽 방향의 asset 사진 배열 5~8 
-	        frames: config.scene.anims.generateFrameNumbers('dude2', {start: 0, end: 8}),
+	        frames: config.scene.anims.generateFrameNumbers('student', {start: 0, end: 8}),
 	        frameRate: 7,
 	        repeat: -1
 	    })
@@ -27,7 +27,7 @@ class Player extends Phaser.GameObjects.Sprite {
 	    config.scene.anims.create({
 	        key: 'right',
 			//오른쪽 방향의 asset 사진 배열 5~8 
-	        frames: config.scene.anims.generateFrameNumbers('dude2', {start: 15, end: 20}),
+	        frames: config.scene.anims.generateFrameNumbers('student', {start: 15, end: 20}),
 	        frameRate: 10,
 	        repeat: -1
 	    })
