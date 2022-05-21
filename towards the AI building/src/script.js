@@ -24,7 +24,7 @@ var config = {
 
 var game = new Phaser.Game(config);
 //처음 레벨 설정 
-var level = 1;
+var level = 2;
 var gameover = false;
 
 function preload() {
@@ -50,7 +50,7 @@ function preload() {
 	this.load.spritesheet('dude' ,'assets/player.png', {
 		frameWidth: 32, frameHeight: 48
 	})
-	this.load.spritesheet('dude2','assets/sizeup_pin.png',{
+	this.load.spritesheet('dude2','assets/sizeup_student.png',{
 		frameWidth: 48, frameHeight: 48
 	})
 	// tile들 불러오기 
@@ -123,6 +123,7 @@ function create() {
 	this.physics.add.overlap(player, diamonds, collectDiamonds, null, this);
 	//버섯 닿으면 높게 올라가기
 	this.physics.add.overlap(player,mushrooms,mushroomUp,null,this);
+
 	// exits 문 접촉했을때 gamewon 
 	this.physics.add.overlap(player, exits, gameWon, null, this);
 
@@ -253,6 +254,9 @@ function gameOver(player, tile) {
 function gameWon(player, tile) {
 	if (level < MAX_LEVEL) {
 		level += 1;
+		if(level == MAX_LEVEL) { //게임 클리어 했을때
+			alert("clear!!!");}
+
 		this.scene.restart();
 	}
 }
