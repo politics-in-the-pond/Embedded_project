@@ -24,7 +24,7 @@ var config = {
 
 var game = new Phaser.Game(config);
 //처음 레벨 설정 
-var level = 5;
+var level = 1;
 var gameover = false;
 
 function preload() {
@@ -138,7 +138,7 @@ function create() {
 
 	// creating player
 	if(level < 1)
-		player = new Player({scene:this, x: 0, y:800});
+		player = new Player({scene:this, x: 0, y:750});
 	else
 		player = new Player({scene:this, x: 100, y:300});
 
@@ -163,8 +163,8 @@ function create() {
 	this.physics.add.overlap(player, exits, gameWon, null, this);
 
 	// Text Objects
-	if(level>=1 && level<5)
-	levelText = this.add.text(WIDTH-200, 20, `Stage : ${level}`, {fontSize:'32px', fill:'#000'})
+	//if(level>=1 && level<5)
+	//levelText = this.add.text(WIDTH-200, 10, `Stage : ${level}`, {fontSize:'32px', fill:'#000'})
 
 	// draw border
 	var rect = this.add.rectangle(0, 0, WIDTH, HEIGHT).setOrigin(0);
