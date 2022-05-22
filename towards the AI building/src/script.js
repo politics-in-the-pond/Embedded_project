@@ -24,7 +24,7 @@ var config = {
 
 var game = new Phaser.Game(config);
 //처음 레벨 설정 
-var level =4;
+var level = 4;  //intro때문에 -1이 시작
 var gameover = false;
 
 function preload() {
