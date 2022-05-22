@@ -11,7 +11,7 @@ class Bee extends Phaser.GameObjects.Sprite {
 		// 벌은 위아래로 만 움직이도록 설정 
 		config.scene.tweens.add({
 			targets : this.body.velocity,
-			y : {from: -150, to: 150},
+			y : {from: -300, to: 300},
 			ease: Phaser.Math.Easing.Quadratic.InOut,
 			yoyo: true,
 			repeat: -1,

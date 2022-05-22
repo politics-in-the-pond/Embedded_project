@@ -19,7 +19,7 @@ class Player extends Phaser.GameObjects.Sprite {
 		config.scene.anims.create({
 	        key: 'turn',
 			//오른쪽 방향의 asset 사진 배열 5~8 
-	        frames: config.scene.anims.generateFrameNumbers('student', {start: 0, end: 6}),
+	        frames: config.scene.anims.generateFrameNumbers('student', {start: 0, end: 2}),
 	        frameRate: 6,
 	        repeat: -1
 	    })
