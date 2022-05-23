@@ -26,6 +26,8 @@ var game = new Phaser.Game(config);
 //처음 레벨 설정 
 var level = -1;  //intro때문에 -1이 시작
 var gameover = false;
+let diamond_cnt = 0;
+let scoreText ='';
 
 function preload() {
 
@@ -72,6 +74,8 @@ function preload() {
 }
 
 function create() {
+
+	
 	// intro
 	if(level == -1){ //intro1
 		this.add.image(0, 0, 'intro1').setOrigin(0).setScrollFactor(0);
@@ -91,7 +95,8 @@ function create() {
 	// draw background
 	else if(level == 1)
 		this.add.image(0, 0, 'stage1').setOrigin(0).setScrollFactor(0);
-	else if(level == 2)
+		
+	else if (level == 2)
 		this.add.image(0, 0, 'stage2').setOrigin(0).setScrollFactor(0);
 	else if(level == 3)
 		this.add.image(0, 0, 'stage3').setOrigin(0).setScrollFactor(0);
@@ -102,6 +107,12 @@ function create() {
 	else if(level == 5){
 		this.add.image(0, 0, 'outro1').setOrigin(0).setScrollFactor(0);
 	}
+
+	scoreText = this.add.text(15, 15, " ", {
+		fontSize: "32px",
+		fill: "#000",
+	});
+	 
 	//this.add.image(100, 120, 'sun');
 
 	// draw grid
@@ -128,6 +139,8 @@ function create() {
 	var levels = this.cache.json.get('levels');
 	loadLevelSetup(levels, level, this);
 
+	
+
 	// creating player
 	if(level < 1)
 		player = new Player({scene:this, x: 0, y:750});
@@ -152,7 +165,7 @@ function create() {
 	this.physics.add.overlap(player,mushrooms,mushroomUp,null,this);
 
 	// exits 문 접촉했을때 gamewon 
-	this.physics.add.overlap(player, exits, gameWon, null, this);
+	this.physics.add.collider(player, exits, gameWon, null, this);
 
 	// Text Objects
 	//if(level>=1 && level<5)
@@ -161,6 +174,12 @@ function create() {
 	// draw border
 	var rect = this.add.rectangle(0, 0, WIDTH, HEIGHT).setOrigin(0);
 	rect.setStrokeStyle(4, 0x1a65ac)
+
+	//set score 
+	
+	//다이아몬드 모으기 
+	
+	
 }
 //캐릭터 움직임 
 function update() {
@@ -182,7 +201,11 @@ function update() {
 		if (cursor.up.isDown && player.body.touching.down) {
 			player.body.setVelocityY(-400);
 		}
+		 
 	}
+	
+	
+	
 }
 // 레벨마다 맵 다르게 설정하는것 
 // 이 부분 코드 이해하면 맵 위치 설정 가능 
@@ -257,10 +280,7 @@ function loadLevelSetup(levels, level, scene) {
 function getPos(i, j, offsetx=0, offsety=0) {
 	return [TILESIZE*(j+1)-24+offsetx, TILESIZE*(i+1)-24+offsety];
 }
-//다이아몬드 모으기 
-function collectDiamonds(player, diamond){
-	diamond.disableBody(true, true);
-}
+
 //게임 끝내기 
 function gameOver(player, tile) {
 	player.setTint(0xff0000);
@@ -271,6 +291,7 @@ function gameOver(player, tile) {
 function gameWon(player, tile) {
 	if (level < MAX_LEVEL) {
 		level += 1;
+		console.log(level);
 		this.scene.restart();
 	}
 	if(level == MAX_LEVEL){
@@ -307,3 +328,11 @@ function mushroomUp(player,mushroom){
 	mushroom.disableBody(true, true);
 	 
 }
+
+function collectDiamonds(player, diamond) {
+		
+		diamond.disableBody(true, true);
+		diamond_cnt += 1;
+		scoreText.setText("score: " + diamond_cnt);
+
+	}

@@ -1,0 +1,135 @@
+[33mcommit 5c9c3e4991da29a0671eea326e55b557003b20f7[m[33m ([m[1;36mHEAD -> [m[1;32msuha_version[m[33m, [m[1;31morigin/suha_version[m[33m)[m
+Author: suha <hp980724@gmail.com>
+Date:   Mon May 23 11:15:20 2022 +0900
+
+    scroe
+
+[33mcommit 8330a3eeb4706c6080cfb56567e19d5159899bcd[m
+Author: suha <hp980724@gmail.com>
+Date:   Mon May 23 10:09:50 2022 +0900
+
+    score 추가
+
+[33mcommit e8e176e65ff47c5c054a919d73248da7e837c84c[m
+Merge: b6e95eb 58ca7b8
+Author: suha <hp980724@gmail.com>
+Date:   Mon May 23 09:11:46 2022 +0900
+
+    Merge branch 'main' of https://github.com/hp0724/Embedded_project into suha_version
+
+[33mcommit 58ca7b8ac0daa2ad574e09d2c96695137906ec48[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Mon May 23 03:31:56 2022 +0900
+
+    타일톤 밝게, 자막 추가(한국어)
+
+[33mcommit b6e95eb1bb146b345a5b545a5608cafcfe78de55[m
+Author: suha <hp980724@gmail.com>
+Date:   Sun May 22 23:53:36 2022 +0900
+
+    fix
+
+[33mcommit f6ff13409d5ee3397f3dfaa958932c2509236d2f[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Sun May 22 23:50:35 2022 +0900
+
+    balance
+
+[33mcommit 2e790a2870ebd86fa613d0d5fc65baebff3035ae[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Sun May 22 23:40:09 2022 +0900
+
+    i dont know...
+
+[33mcommit 8bf3e670b5ec23e1c16da9b037ef2e02cccf9c82[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Sun May 22 16:51:16 2022 +0900
+
+    changed skin color....
+
+[33mcommit 020d7bef91f3e343cf24ecdbad98d18f183ae82d[m
+Author: suha <hp980724@gmail.com>
+Date:   Sat May 21 18:37:42 2022 +0900
+
+    level change
+
+[33mcommit 4021d1fe97593eae888c58739e8be52a69c0ac25[m
+Merge: 962a893 28559d3
+Author: suha <hp980724@gmail.com>
+Date:   Sat May 21 18:02:14 2022 +0900
+
+    Merge branch 'main' of https://github.com/hp0724/Embedded_project into suha_version
+
+[33mcommit 962a89363766e51e725b9338672b38104fadad67[m
+Author: suha <hp980724@gmail.com>
+Date:   Sat May 21 16:59:58 2022 +0900
+
+    aa
+
+[33mcommit 28559d32c52d5f3f430f969ddcbc7a18c8f8909a[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Sat May 21 16:47:09 2022 +0900
+
+    sizeup player size dot
+
+[33mcommit 95298f76a3bdb69ac730494cfa5d2360df639451[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Sat May 21 16:27:47 2022 +0900
+
+    change diamond to windwheel
+
+[33mcommit a2adae0a66d04c965ca5d75b333c5d8f382bcdbd[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Sat May 21 16:03:48 2022 +0900
+
+    add intro outro
+    
+    인트로 아웃트로 넣음(4초면 넘어감)
+
+[33mcommit 7b82738b894608eb60da3e8fc583bd708889808d[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Sat May 21 13:49:00 2022 +0900
+
+    change player dot(추가수정예정)
+
+[33mcommit 30a6d8ae4621569133c1082c08fb33c8fddc6170[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Thu May 19 20:22:37 2022 +0900
+
+    player sizeup
+
+[33mcommit 990cb8484d7a2ab5ea88a9644a05d0e5780414d4[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Thu May 19 20:04:49 2022 +0900
+
+    edit
+
+[33mcommit c9398d073994b4b74d8ec119aceae7e176d46615[m
+Author: suha <hp980724@gmail.com>
+Date:   Tue May 17 14:14:45 2022 +0900
+
+    level fix
+
+[33mcommit 8342920c7debaafa831ac85e6051a848403e7cac[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Tue May 17 01:46:31 2022 +0900
+
+    edit tile pos, change background
+
+[33mcommit c0fd3de505338277855a53d1ce574ed6ffe706ba[m
+Author: Dahye Kim <ekgp055@naver.com>
+Date:   Mon May 16 16:39:41 2022 +0900
+
+    change folder name
+
+[33mcommit ebef8b18d6f56aa1d38660eed76dc117952b70c2[m
+Author: suha <75898031+hp0724@users.noreply.github.com>
+Date:   Fri May 13 20:21:20 2022 +0900
+
+    Update README.md
+
+[33mcommit 3337aa320f505a8bc4df94825a23c8bffb34b850[m
+Author: suha <75898031+hp0724@users.noreply.github.com>
+Date:   Fri May 13 20:20:15 2022 +0900
+
+    first
