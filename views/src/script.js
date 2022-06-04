@@ -3,6 +3,9 @@ const TILESIZE = 48;
 const ROWS = HEIGHT / TILESIZE;
 const COLS = WIDTH / TILESIZE;
 const MAX_LEVEL = 6;
+//S:STOP, L:LEFT, R:RIGHT
+var DIRECTION = "S";
+var JUMP = false;
 
 var config = {
 	type: Phaser.AUTO,
@@ -27,10 +30,21 @@ function makeMessage(type, payload) {
 	return JSON.stringify(msg)      
 }
 
+function msgParser(msg){
+	const MESSAGE = JSON.parse(msg.data).payload;
+	console.log(DIRECTION);
+	if(MESSAGE == "S" || MESSAGE == "L" || MESSAGE == "R"){
+		DIRECTION = MESSAGE;
+	}else if(MESSAGE == "J"){
+		JUMP = true;
+	}else{
+
+	}
+}
+
 //웹소켓 연결
 socket = new WebSocket(`ws://${window.location.host}`)
-//=>{} 부분을 입력 처리 코드로 바꿔주세요
-socket.addEventListener("message", (message)=>{console.log(message.data)});
+socket.addEventListener("message", (message)=>msgParser(message));
 
 var game = new Phaser.Game(config);
 //처음 레벨 설정 
@@ -105,14 +119,12 @@ function create() {
 	// draw background
 	else if(level == 1)
 		this.add.image(0, 0, 'stage1').setOrigin(0).setScrollFactor(0);
-		
-	else if (level == 2)
+	else if(level == 2)
 		this.add.image(0, 0, 'stage2').setOrigin(0).setScrollFactor(0);
 	else if(level == 3)
 		this.add.image(0, 0, 'stage3').setOrigin(0).setScrollFactor(0);
 	else if(level == 4)
 		this.add.image(0, 0, 'stage4').setOrigin(0).setScrollFactor(0);
-	
 	//outro
 	else if(level == 5){
 		this.add.image(0, 0, 'outro1').setOrigin(0).setScrollFactor(0);
@@ -195,11 +207,11 @@ function create() {
 function update() {
 	if (!gameover) {
 		//왼쪽 방향키
-		if (cursor.left.isDown) {
+		if (DIRECTION == "L") {
 			player.body.setVelocityX(-100);
 			player.anims.play('left', true);
 		} //오른쪽 방향기 
-		else if (cursor.right.isDown) {
+		else if (DIRECTION == "R") {
 			player.body.setVelocityX(100);
 			player.anims.play('right', true);
 		}// 가만히 있기 
@@ -208,8 +220,9 @@ function update() {
 			player.anims.play('turn', true);
 		}
 		// 점프 
-		if (cursor.up.isDown && player.body.touching.down) {
+		if (JUMP && player.body.touching.down) {
 			player.body.setVelocityY(-400);
+			JUMP = false;
 		}
 		 
 	}
