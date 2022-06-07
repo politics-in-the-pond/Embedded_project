@@ -45,7 +45,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-var result = spawn('python', ['./hand_recog_temp.py']);
+var result = spawn('python', ['./hand_recog_test2.py']);
 result.stdout.on('data', function(data) {
   console.log(data.toString())
   sockets.forEach((aSocket) => aSocket.send(makeMessage("message", data.toString())));

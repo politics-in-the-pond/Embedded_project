@@ -30,18 +30,6 @@ function makeMessage(type, payload) {
 	return JSON.stringify(msg)      
 }
 
-function msgParser(msg){
-	const MESSAGE = JSON.parse(msg.data).payload;
-	console.log(DIRECTION);
-	if(MESSAGE == "S" || MESSAGE == "L" || MESSAGE == "R"){
-		DIRECTION = MESSAGE;
-	}else if(MESSAGE == "J"){
-		JUMP = true;
-	}else{
-
-	}
-}
-
 //웹소켓 연결
 socket = new WebSocket(`ws://${window.location.host}`)
 socket.addEventListener("message", (message)=>msgParser(message));
@@ -203,6 +191,21 @@ function create() {
 	
 	
 }
+
+
+function msgParser(msg){
+	var MESSAGE = JSON.parse(msg.data).payload;
+	MESSAGE = MESSAGE.substring(0, 1)
+	console.log(MESSAGE);
+	if(MESSAGE == "S" || MESSAGE == "L" || MESSAGE == "R"){
+		DIRECTION = MESSAGE;
+	}else if(MESSAGE == "J" && player.body.touching.down){
+		JUMP = true;
+	}else{
+
+	}
+}
+
 //캐릭터 움직임 
 function update() {
 	if (!gameover) {
@@ -220,7 +223,7 @@ function update() {
 			player.anims.play('turn', true);
 		}
 		// 점프 
-		if (JUMP && player.body.touching.down) {
+		if (JUMP) {
 			player.body.setVelocityY(-400);
 			JUMP = false;
 		}
