@@ -1,4 +1,3 @@
-
 import matplotlib.pyplot as plt
 from sys import stdout
 import mediapipe as mp
@@ -96,19 +95,11 @@ def countFingers(image, results, draw=True, display=True):
             count[hand_label.upper()] += 1
 
     if draw:
-
-        cv2.putText(output_image, " Total Fingers: ", (10, 25),
-                    cv2.FONT_HERSHEY_COMPLEX, 1, (20, 255, 155), 2)
-        cv2.putText(output_image, str(sum(count.values())), (width//2-150, 240), cv2.FONT_HERSHEY_SIMPLEX,
-                    8.9, (20, 255, 155), 10, 10)
+        pass
 
     if display:
 
-        # Display the output image.
-        plt.figure(figsize=[10, 10])
-        plt.imshow(output_image[:, :, ::-1])
-        plt.title("Output Image")
-        plt.axis('off')
+        pass
 
     else:
 
@@ -137,7 +128,7 @@ def recognizeGestures(image, fingers_statuses, count, draw=True, display=True):
 
            # color = (0, 255, 0)
 
-        elif count[hand_label] == 2 and fingers_statuses[hand_label+'_INDEX'] and fingers_statuses[hand_label+'_PINKY']:
+        elif count[hand_label] == 1 and fingers_statuses[hand_label+'_INDEX']:
 
             if hand_index == 0:
                 hands_gestures[hand_label] = "RIGHT_STOP_SIGN"
@@ -154,28 +145,8 @@ def recognizeGestures(image, fingers_statuses, count, draw=True, display=True):
             elif hand_index == 1:
                 hands_gestures[hand_label] = "LEFT_HIGH_FIVE_SIGN"
 
-          #  color = (0, 255, 0)
-
-        # elif count[hand_label] == 0
-
-        #     if hand_index == 0:
-        #         hands_gestures[hand_label] = "RIGHT_STOP_SIGN"
-        #     elif hand_index == 1:
-        #         hands_gestures[hand_label] = "RIGHT_STOP_SIGN"
-
-        #     color = (0, 255, 0)
-
-        if draw:
-
-            cv2.putText(output_image, hand_label + ': ' + hands_gestures[hand_label], (10, (hand_index+1) * 60),
-                        cv2.FONT_HERSHEY_PLAIN, 4, color, 5)
-
     if display:
-
-        plt.figure(figsize=[10, 10])
-        plt.imshow(output_image[:, :, ::-1])
-        plt.title("Output Image")
-        plt.axis('off')
+        pass
 
     else:
 
@@ -183,16 +154,11 @@ def recognizeGestures(image, fingers_statuses, count, draw=True, display=True):
 
 
 camera_video = cv2.VideoCapture(0)
-camera_video.set(3, 1280)
-camera_video.set(4, 960)
+camera_video.set(3, 480)
+camera_video.set(4, 320)
 
-
-filter_imageBGRA = cv2.imread('media/filter.png', cv2.IMREAD_UNCHANGED)
-
-#filter_on = False
 
 pygame.init()
-# pygame.mixer.music.load("media/cam.mp3")
 
 
 num_of_frames = 5
@@ -212,11 +178,6 @@ while camera_video.isOpened():
     frame = cv2.flip(frame, 1)
 
     frame_height, frame_width, _ = frame.shape
-
-    filter_imageBGRA = cv2.resize(
-        filter_imageBGRA, (frame_width, frame_height))
-
-    filter_imageBGR = filter_imageBGRA[:, :, :-1]
 
     frame, results = detectHandsLandmarks(
         frame, hands_videos, draw=False, display=False)
@@ -253,8 +214,6 @@ while camera_video.isOpened():
 
             if counter['RIGHT_HIGH_FIVE_SIGN'] == num_of_frames:
 
-                #filter_on = True
-                # print("RIGHT_HIGH_FIVE_SIGN")
                 sys.stdout.write('J')
                 sys.stdout.flush()
                 time.sleep(0.1)
@@ -271,8 +230,6 @@ while camera_video.isOpened():
 
             if counter['LEFT_STOP_SIGN'] == num_of_frames:
 
-                #filter_on = False
-                # print("LEFT_STOP_SIGN")
                 sys.stdout.write('S')
                 sys.stdout.flush()
                 time.sleep(0.1)
@@ -289,9 +246,6 @@ while camera_video.isOpened():
 
             if counter['RIGHT_STOP_SIGN'] == num_of_frames:
 
-                #filter_on = False
-
-                # print("RIGHT_STOP_SIGN")
                 sys.stdout.write('S')
                 sys.stdout.flush()
                 time.sleep(0.1)
